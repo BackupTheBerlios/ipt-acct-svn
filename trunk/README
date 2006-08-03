@@ -10,15 +10,15 @@ Usage: iptables ... -j ACCT [--magic N] [--header[=N]] [--critical]
                             [--continue|--accept|--drop]
 
 Any matched packet will be accounted by src:sport. dst:dport, proto,
-magic values.
+and magic values.
 
 Options:
   --header[=N]
     Add additional N (or link level header size if N is omitted)
-    bytes to size of IP packet.
+    bytes to size of IP packet (defaults to 0).
   --critical
     Accept packet even if it cannot be accounted due to accounting
-    tables threshold.
+    tables overrun.
   --continue
     Return packet to firewall after accounting (default).
   --accept
