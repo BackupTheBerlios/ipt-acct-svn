@@ -12,7 +12,7 @@ CC ?= gcc
 CFLAGS ?= -O2
 LD ?= ld
 IPTABLES_VERSION := $(shell $(IPTABLES) --version | sed -e 's/.* v//')
-CFLAGS := $(CFLAGS) -Wall -Werror -DIPTABLES_VERSION=\"$(IPTABLES_VERSION)\"
+CFLAGS := $(CFLAGS) -Wall -DIPTABLES_VERSION=\"$(IPTABLES_VERSION)\"
 
 all: module lib dumper stat
 
