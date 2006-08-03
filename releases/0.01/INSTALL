@@ -1,0 +1,20 @@
+ipt_ACCT is an accounting module for iptables.
+
+a) [For 2.4 kernels]
+  # make OLD_KERNEL=1
+  # make OLD_KERNEL=1 install
+b) [For 2.6 kernels]
+  # make
+  # make install
+
+Additional parameters:
+  PREFIX - Installation prefix (defaults to /usr/local) for headers and
+           userland utilities.
+  IPTABLES - Path to iptables binary (defaults to /sbin/iptables).
+  IPTABLES_LIBS - Path to iptables shared libraries (defaults to /lib/iptables)
+  MODULES_DIR - Path to kernel modules (defaults to /lib/modules/`uname -r`)
+  KERNEL_SOURCES - Path to kernel sources (defaults to $(MODULES_DIR)/build)
+  CC - C compiler (defaults to gcc)
+  CFLAGS - C compiler flags (defaults to -O2)
+  LD - GNU ld (defaults to ld) 
+
