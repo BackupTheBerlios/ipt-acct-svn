@@ -1,0 +1,32 @@
+ipt_ACCT is an accounting module for iptables.
+
+See the file INSTALL for compilation and installation instructions.
+
+First you must load module ipt_ACCT into your kernel. This could be done
+by appropriate insmod(8) or modprobe(8) execution. Description of module
+parameters can be obtained via modinfo(8).
+
+Usage: iptables ... -j ACCT [--magic N] [--header[=N]] [--critical]
+                            [--continue|--accept|--drop]
+
+Any matched packet will be accounted by src:sport. dst:dport, proto,
+magic values.
+
+Options:
+  --header[=N]
+    Add additional N (or link level header size if N is omitted)
+    bytes to size of IP packet.
+  --critical
+    Accept packet even if it cannot be accounted due to accounting
+    tables threshold.
+  --continue
+    Return packet to firewall after accounting (default).
+  --accept
+    Accept packet after accounting.
+  --drop
+    Drop packet after accounting.
+
+Dumps and statistics could be viewed with help of dump_ipt_acct and
+stat_ipt_acct programs. Anyone is free to write his own userland utilities
+using ioctl's from ipt_ACCT.h.
+
