@@ -1,0 +1,14 @@
+# $Id$
+
+TARGET := ipt_ACCT
+WARN := -W -Wall -Wstrict-prototypes -Wmissing-prototypes
+INCLUDE := -isystem /lib/modules/$(shell uname -r)/build/include
+CFLAGS := -O2 -DMODULE -D__KERNEL__ $(WARN) $(INCLUDE)
+
+$(TARGET).o: $(TARGET).c
+
+.PHONY: clean
+
+clean:
+	rm -f $(TARGET).o
+
