@@ -219,7 +219,7 @@ static unsigned int
 ipt_acct_handle (struct sk_buff **pskb, const struct net_device *in,
                  const struct net_device *out, unsigned int hook_number,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 17)
-                 const struct ipt_taget *target,
+                 const struct ipt_target *target,
 #endif
                  const void *target_info, void *user_info) 
 {
