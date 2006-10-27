@@ -475,7 +475,7 @@ static struct ipt_target ipt_acct_target =
   .target = ipt_acct_handle,
   .checkentry = ipt_acct_check_entry,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 17)
-  .targetsize = sizeof (ipt_acct_info),
+  .targetsize = sizeof (struct ipt_acct_info),
 #endif
   .me = THIS_MODULE
 };
