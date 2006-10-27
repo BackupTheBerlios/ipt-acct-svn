@@ -218,6 +218,9 @@ ipt_acct_dump_timer (unsigned long data)
 static unsigned int
 ipt_acct_handle (struct sk_buff **pskb, const struct net_device *in,
                  const struct net_device *out, unsigned int hook_number,
+#if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 17)
+                 const struct ipt_taget *target,
+#endif
                  const void *target_info, void *user_info) 
 {
   unsigned int i;
@@ -347,6 +350,9 @@ ipt_acct_handle (struct sk_buff **pskb, const struct net_device *in,
 static int
 #if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 16)
 ipt_acct_check_entry (const char *table_name, const void *entry,
+# if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 17)
+                      const struct ipt_target *target,
+# endif
                       void *target_info, unsigned int target_info_size,
                       unsigned int hook_mask)
 #else
