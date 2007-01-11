@@ -69,7 +69,7 @@ skb_header_pointer(const struct sk_buff *skb, int offset,
 #include "ipt_ACCT.h"
 
 MODULE_LICENSE ("GPL");
-MODULE_AUTHOR ("Mikhail V. Vorozhtsov <gik@gmail.ru>");
+MODULE_AUTHOR ("Mikhail V. Vorozhtsov <mikhail.vorozhtsov@gmail.com>");
 MODULE_DESCRIPTION ("iptables accounting module");
 
 #define DEFAULT_MAX_RECORDS (2 * 1024)
