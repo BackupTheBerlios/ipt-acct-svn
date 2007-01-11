@@ -221,7 +221,11 @@ ipt_acct_handle (struct sk_buff **pskb, const struct net_device *in,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 17)
                  const struct ipt_target *target,
 #endif
-                 const void *target_info, void *user_info) 
+                 const void *target_info
+#if LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 19)
+                 , void *user_info 
+#endif
+                 )
 {
   unsigned int i;
   struct sk_buff *skb = *pskb;
@@ -353,7 +357,10 @@ ipt_acct_check_entry (const char *table_name, const void *entry,
 # if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 17)
                       const struct ipt_target *target,
 # endif
-                      void *target_info, unsigned int target_info_size,
+                      void *target_info,
+# if LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 19)
+                      unsigned int target_info_size,
+# endif
                       unsigned int hook_mask)
 #else
 ipt_acct_check_entry (const char *table_name, const struct ipt_entry *entry,
@@ -363,11 +370,13 @@ ipt_acct_check_entry (const char *table_name, const struct ipt_entry *entry,
 {
   struct ipt_acct_info *info = (struct ipt_acct_info *) target_info;
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 19)
   if (target_info_size != IPT_ALIGN (sizeof (struct ipt_acct_info)))
     {
       printk ("ipt_ACCT: wrong target_info_size = %u\n", target_info_size);
       return 0;
     } 
+#endif
   
   if (info->retcode != IPT_CONTINUE && info->retcode != NF_ACCEPT
       && info->retcode != NF_DROP)
@@ -469,7 +478,8 @@ static struct miscdevice ipt_acct_device =
 {
   .minor = MISC_DYNAMIC_MINOR,
   .name = IPT_ACCT_DEVICE,
-#if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 0) \
+    && LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 19)
   .devfs_name = IPT_ACCT_DEVICE,
 #endif
   .fops = &ipt_acct_device_ops
