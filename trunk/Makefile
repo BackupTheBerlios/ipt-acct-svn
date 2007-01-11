@@ -10,6 +10,7 @@ PREFIX ?= /usr/local
 
 CC ?= gcc
 CFLAGS ?= -O2
+LD ?= ld
 IPTABLES_VERSION := $(shell $(IPTABLES) --version | sed -e 's/.* v//')
 CFLAGS := $(CFLAGS) -Wall -DIPTABLES_VERSION=\"$(IPTABLES_VERSION)\"
 
@@ -25,7 +26,14 @@ endif
 lib: libipt_ACCT.so
 
 libipt_ACCT.so: libipt_ACCT.o
-	$(CC) -shared -o $@ $<
+	case $(IPTABLES_VERSION) in \
+		1.3.0|1.3.1|1.3.2|1.3.3|1.3.4|1.3.5|1.3.6) \
+			$(LD) -shared -o $@ $< \
+			;; \
+		*) \
+			$(CC) -shared -o $@ $< \
+			;; \
+	esac
 
 libipt_ACCT.o: libipt_ACCT.c ipt_ACCT.h
 	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
