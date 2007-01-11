@@ -29,7 +29,7 @@
 #include <linux/types.h>
 #include <linux/ioctl.h>
 
-#define IPT_ACCT_VERSION "0.04"
+#define IPT_ACCT_VERSION "0.05"
 
 #define IPT_ACCT_MAJIC 241
 #define IPT_ACCT_DEVICE "ipt_acct"
