@@ -82,6 +82,7 @@ ifdef OLD_KERNEL
 		make -f Makefile-2.4 clean
 else
 		make -C $(KDIR) M=$(PWD) clean
+		rm -f Module.symvers
 endif
 	rm -f libipt_ACCT.o libipt_ACCT.so
 	rm -f dump_ipt_acct.o dump_ipt_acct
