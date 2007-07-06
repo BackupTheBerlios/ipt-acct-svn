@@ -479,7 +479,7 @@ static struct miscdevice ipt_acct_device =
   .minor = MISC_DYNAMIC_MINOR,
   .name = IPT_ACCT_DEVICE,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION (2, 6, 0) \
-    && LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 19)
+    && LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 18)
   .devfs_name = IPT_ACCT_DEVICE,
 #endif
   .fops = &ipt_acct_device_ops
